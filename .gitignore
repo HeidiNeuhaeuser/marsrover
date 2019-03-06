@@ -1,0 +1,10 @@
+# MAC
+.DS_STORE
+
+# Intellij
+*.idea
+
+# Folders
+venv/
+
+
