@@ -46,12 +46,15 @@ Lorem
 
 #### Assumptions
 * Rover cannot move out of grid
-* input assumptions
+* There can be more than one rover on a given grid coordinate
+* Rovers can only turn 90 degrees (left or right)
+* input assumptions (check for incorrect input)
 
 
 #### Design Patterns
 * Not Singleton
 * MVC
+* Command Pattern
 * ...
 
 #### Used Style Guide
@@ -67,6 +70,6 @@ How to run code
 ## Extensibility and Maintainability
 Easy to evolve and extend, e.g. in terms of: 
 * more rover/ more boards (classes / interfaces)
-* more complex movements / more complex directions e.g. North-West? (enums?)
+* more complex movements / more complex directions e.g. North-West (enums)
 
 
