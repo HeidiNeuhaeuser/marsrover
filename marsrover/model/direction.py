@@ -1,7 +1,7 @@
 from enum import Enum, unique
 
 
-@unique  # don't allow duplicate enum values
+@unique
 class Direction(Enum):
     NORTH = 1
     EAST = 2
