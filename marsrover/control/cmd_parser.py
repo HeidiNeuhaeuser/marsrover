@@ -1,9 +1,7 @@
-import logging
-import os
 from marsrover.model.rover import Rover
 from marsrover.model.plateau import Plateau
-from marsrover.controller.cmd_invoker import CommandInvoker
-from marsrover.controller.command import *
+from marsrover.control.cmd_invoker import CommandInvoker
+from marsrover.control.command import *
 
 LOG = logging.getLogger(os.path.basename(__file__))
 
