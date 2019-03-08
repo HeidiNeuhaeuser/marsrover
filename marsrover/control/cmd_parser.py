@@ -14,7 +14,7 @@ class CommandParser:
 
     def parse(self):
         with open(self.input_file, 'r') as f:
-            lines = f.readlines()
+            lines = list(filter(None, (line.rstrip() for line in f)))
 
         # TODO: check empty input
         command_invokers = []
@@ -29,22 +29,29 @@ class CommandParser:
                 exit(1)
             d = DIRECTIONS[d]
             mars_rover = Rover(x, y, d, grid)
+            LOG.info(("Rover initialized with x={}, y={}, d={}.".format(x, y, str(d))))
             command_invokers.append((mars_rover, self._read_commands(mars_rover, lines[i + 1])))
 
         return command_invokers
 
     @staticmethod
-    def _read_plateau_coords(self, l):
+    def _read_plateau_coords(l):
+        LOG.info("Looking at line '{}' for plateau coordinates.".format(l))
+        print("Looking at line '{}' for plateau coordinates.".format(l))
         return list(map(int, l.rstrip().split()))
 
     @staticmethod
-    def _read_rover_details(self, l):
+    def _read_rover_details(l):
+        LOG.info("Looking at line '{}' for rover details.".format(l))
+        print("Looking at line '{}' for rover details.".format(l))
         res = list(l.rstrip().split())
         return int(res[0]), int(res[1]), res[2]
 
     @staticmethod
-    def _read_commands(self, r, l):
+    def _read_commands(r, l):
         c_invoker = CommandInvoker()
+        LOG.info("Looking at line '{}' for rover commands.".format(l))
+        print("Looking at line '{}' for rover commands.".format(l))
         commands = {"L" : TurnLeftCommand(r), "R": TurnRightCommand(r), "M" : MoveForwardCommand(r)}
 
         for cmd in l:

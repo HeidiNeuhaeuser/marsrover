@@ -1,8 +1,9 @@
 import logging
 import os
-#from marsrover.model.direction import *
+from marsrover.model.direction import *
 
 LOG = logging.getLogger(os.path.basename(__file__))
+DIRECTIONS = get_directions()
 
 
 class Rover:
@@ -29,7 +30,7 @@ class Rover:
             exit(1)
 
     def turn_left(self):
-        self.heading = self.heading.left
+        self.heading = DIRECTIONS[self.heading.left]
 
     def turn_right(self):
-        self.heading = self.heading.right
+        self.heading = DIRECTIONS[self.heading.right]

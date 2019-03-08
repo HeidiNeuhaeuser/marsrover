@@ -1,4 +1,5 @@
 import argparse
+import traceback
 from marsrover.control.command import *
 from marsrover.control.cmd_parser import CommandParser
 
@@ -25,7 +26,7 @@ def parse_arguments():
         default="sample_output.txt",
         dest="output_file")
 
-    # Todo: add Logfile option
+    # Todo: FIx Logfile option
 
     return parser.parse_args()
 
@@ -36,15 +37,17 @@ def main():
 
     try:
         command_invokers = c.parse()
-    except (ValueError, IndexError):
+    except Exception:
         LOG.error("Input file contains invalid input")
         LOG.error("Exit program!")
+        traceback.print_exc()
         exit(1)
 
     for rover_invoker in command_invokers:
         rover, invoker = rover_invoker
         invoker.execute_commands()
         LOG.info("Rover Position after commands: {}".format(str(rover)))
+        print("Rover Position after commands: {}".format(str(rover)))
 
 
 if __name__ == "__main__":
