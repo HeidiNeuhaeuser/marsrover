@@ -8,6 +8,7 @@ class TestRover(unittest.TestCase):
         self.assertEqual(d.left, "W")
         self.assertEqual(d.right, "E")
         self.assertEqual(d.move, (2, 3))
+        self.assertEqual(d.move[0], 2)
         self.assertEqual(d.char, "N")
 
     def test_string(self):

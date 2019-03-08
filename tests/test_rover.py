@@ -12,6 +12,7 @@ class TestRover(unittest.TestCase):
         self.assertEqual(r.x, 1)
         self.assertEqual(r.y, 2)
         self.assertEqual(r.heading, DIRECTIONS["N"])
+        self.assertEqual(r.heading.move[1], 1)
 
     def test_string(self):
         r = Rover(1, 2, 'N', None)
