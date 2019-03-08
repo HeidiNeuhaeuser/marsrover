@@ -7,4 +7,9 @@
 # Folders
 venv/
 
+# Cache
+
+# Cache
+__pycache__/
+
 
