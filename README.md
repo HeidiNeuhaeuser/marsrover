@@ -47,7 +47,7 @@ Lorem
 #### Assumptions
 * Rover cannot move out of grid
 * There can be more than one rover on a given grid coordinate
-* Rovers can only turn 90 degrees (left or right)
+* 0-coordinates are still part of the plateau ((0,0) is a valid coordinate)
 * input assumptions (check for incorrect input)
 
 
