@@ -11,6 +11,10 @@ setup(name='marsrover',
           "pytest"
       ],
       zip_safe=False,
-      entry_points={},
+      entry_points={
+            'console_scripts': [
+                  'marsrover=marsrover:main',
+            ],
+      },
       setup_requires=[],
       tests_require=["pytest"],)
