@@ -6,10 +6,11 @@
 
 # Folders
 venv/
-
-# Cache
-
-# Cache
 __pycache__/
+
+# Build specific
+*.egg-info
+build/
+dist/
 
 
