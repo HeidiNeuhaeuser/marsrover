@@ -44,18 +44,23 @@ Lorem
  
 ## Design
 
+The input is first parsed completely and 'translated' to corresponding plateau, mars rover and command objects. Per default, the input (and output) is read (written) to txt files that can be determined as command line parameters.
+After successful parsing, the commands are executed sequentially and output written to the output file.
+
+The Python 'logging' module was used to give more information on the program execution and possible errors. With it's different logging levels (ERROR, INFO, DEBUG) it facilitates code maintaining and debugging for developers.
+
 #### Assumptions
 * Rover cannot move out of grid
 * There can be more than one rover on a given grid coordinate
 * 0-coordinates are still part of the plateau ((0,0) is a valid coordinate)
-* input assumptions (check for incorrect input)
 
 
-#### Design Patterns
-* Not Singleton
+#### Design Choices
+The Command Pattern was used to encapsulate different mars rover movement commands. This way, it is easier to extend the program, for example by supporting more complex rover movements.
+
 * MVC
-* Command Pattern
-* ...
+* different classes for modularisation
+* direction abstraction to allow more complex (e.g. North-West)
 
 #### Used Style Guide
 [PEP 8 Style](https://www.python.org/dev/peps/pep-0008/)
@@ -67,9 +72,5 @@ Lorem
 ## Run
 How to run code
 
-## Extensibility and Maintainability
-Easy to evolve and extend, e.g. in terms of: 
-* more rover/ more boards (classes / interfaces)
-* more complex movements / more complex directions e.g. North-West (enums)
 
 
