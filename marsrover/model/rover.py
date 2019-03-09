@@ -25,9 +25,10 @@ class Rover:
             self.x += self.heading.move[0]
             self.y += self.heading.move[1]
         else:
-            LOG.error("Illegal move, rover cannot move out of plateau.")
-            LOG.error("Exit program")
-            exit(1)
+            raise ValueError("Illegal move, rover cannot move out of plateau.")
+            #LOG.error("Illegal move, rover cannot move out of plateau.")
+            #LOG.error("Exit program")
+            #exit(1)
 
     def turn_left(self):
         self.heading = DIRECTIONS[self.heading.left]

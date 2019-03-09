@@ -18,9 +18,7 @@ class CommandParser:
             lines = list(filter(None, (line.rstrip() for line in f)))
 
         if not lines:
-            LOG.error("Input file empty.")
-            LOG.error("Exit program!")
-            exit(1)
+            raise ValueError("Input file empty.")
 
         command_invokers = []
         w, h = self._read_plateau_coords(lines[0])
@@ -29,10 +27,8 @@ class CommandParser:
 
         for i in range(1, len(lines), 2):
             x, y, d = self._read_rover_details(lines[i])
-            if not DIRECTIONS[d]:
-                LOG.error("Rover direction {} not supported.".format(d))
-                LOG.error("Exit program!")
-                exit(1)
+            if d not in DIRECTIONS.keys():
+                raise ValueError("Rover direction {} not supported.".format(d))
             d = DIRECTIONS[d]
             mars_rover = Rover(x, y, d, grid)
             LOG.debug(("Rover initialized with x={}, y={} and d='{}'.".format(x, y, str(d))))
@@ -58,8 +54,9 @@ class CommandParser:
         commands = {"L": TurnLeftCommand(r), "R": TurnRightCommand(r), "M": MoveForwardCommand(r)}
 
         for cmd in l:
-            if commands[cmd]:
-                c_invoker.add_command(commands[cmd])
+            if cmd not in commands.keys():
+                raise ValueError("Command {} not supported.".format(cmd))
+            c_invoker.add_command(commands[cmd])
 
         LOG.debug("Commands added to command invoker.")
 

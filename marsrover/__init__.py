@@ -1,10 +1,10 @@
 import argparse
 import sys
-import traceback
 from marsrover.control.command import *
 from marsrover.control.cmd_parser import CommandParser
 
 LOG = logging.getLogger(os.path.basename(__file__))
+# TODO: Tests and comments
 
 
 def parse_arguments():
@@ -30,7 +30,9 @@ def parse_arguments():
         help="Print debug information.",
         required=False,
         default=False,
-        dest="verbose")
+        dest="verbose",
+        action="store_true"
+    )
 
     return parser.parse_args()
 
@@ -58,12 +60,21 @@ def write_output_file(file_name, content):
 
     with open(out, 'w') as f:
         f.write(content)
-    LOG.info("Output written into output file '{}'".format(out))
+    LOG.info("Output written into file '{}'".format(out))
+
+
+def print_welcome():
+    print("\n*** WELCOME TO MARS ROVER ***\n")
+
+
+def print_bye():
+    print("\n*** BYE BYE ***\n")
 
 
 def exit_program(reason):
     LOG.error(reason)
     LOG.error("Exit Program!")
+    print_bye()
     exit(1)
 
 
@@ -72,26 +83,27 @@ def get_rover_positions(cmd_invokers):
     for rover_invoker in cmd_invokers:
         rover, invoker = rover_invoker
         invoker.execute_commands()
-        LOG.debug("Rover Position after commands: {}".format(str(rover)))
+        LOG.info("Final rover position: {}".format(str(rover)))
         output_txt += "{} \n".format(str(rover))
     return output_txt
 
 
 def main():
     args = parse_arguments()
-
     configure_logging(args.verbose)
+
+    print_welcome()
     check_input_file(args.input_file)
 
     c = CommandParser(args.input_file)
     try:
         command_invokers = c.parse()
-    except Exception:
-        exit_program("Input file contains invalid input.")
+        rover_positions_str = get_rover_positions(command_invokers)
+        write_output_file(args.output_file, rover_positions_str)
+    except Exception as e:
+        exit_program("Input file contains invalid input: {}".format(str(e)))
 
-    rover_positions_str = get_rover_positions(command_invokers)
-
-    write_output_file(args.output_file, rover_positions_str)
+    print_bye()
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 # Mars Rover Problem
-ThoughtWorks MarsRover Solution
+ThoughtWorks MarsRover Problem
 
 ## Problem
 
@@ -58,19 +58,31 @@ The Python 'logging' module was used to give more information on the program exe
 #### Design Choices
 The Command Pattern was used to encapsulate different mars rover movement commands. This way, it is easier to extend the program, for example by supporting more complex rover movements.
 
-* MVC
-* different classes for modularisation
-* direction abstraction to allow more complex (e.g. North-West)
+* Separation Model and Control
+* Classes for modularisation
+* direction abstraction to allow more complex extensions (e.g. North-West)
 
-#### Used Style Guide
+#### Used Style
 [PEP 8 Style](https://www.python.org/dev/peps/pep-0008/)
 
 
 ## Dependencies
 * python3.7+
 
-## Run
-How to run code
+## Install
+Clone or download project (and unzip if necessary).
 
+Navigate into project: ```cd marsrover```
+
+Install program: ```python3 setup.py install```
+
+## Run 
+Run Program: ```marsrover -i sample_input.txt``` 
+(reads from input file and writes into default output file)
+
+#### Optional Arguments
+Specify output file: ```marsrover -i sample_input.txt -o sample_output.txt``` 
+
+Run in verbose mode: ```marsrover -i sample_input.txt -v```
 
 
