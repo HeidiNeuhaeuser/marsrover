@@ -4,7 +4,6 @@ from marsrover.control.command import *
 from marsrover.control.cmd_parser import CommandParser
 
 LOG = logging.getLogger(os.path.basename(__file__))
-# TODO: Tests and comments
 
 
 def parse_arguments():
@@ -93,10 +92,10 @@ def main():
     configure_logging(args.verbose)
 
     print_welcome()
-    check_input_file(args.input_file)
 
-    c = CommandParser(args.input_file)
+    check_input_file(args.input_file)
     try:
+        c = CommandParser(args.input_file)
         command_invokers = c.parse()
         rover_positions_str = get_rover_positions(command_invokers)
         write_output_file(args.output_file, rover_positions_str)

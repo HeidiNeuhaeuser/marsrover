@@ -27,9 +27,6 @@ class CommandParser:
 
         for i in range(1, len(lines), 2):
             x, y, d = self._read_rover_details(lines[i])
-            if d not in DIRECTIONS.keys():
-                raise ValueError("Rover direction {} not supported.".format(d))
-            d = DIRECTIONS[d]
             mars_rover = Rover(x, y, d, grid)
             LOG.debug(("Rover initialized with x={}, y={} and d='{}'.".format(x, y, str(d))))
             command_invokers.append((mars_rover, self._read_commands(mars_rover, lines[i + 1])))
@@ -45,6 +42,9 @@ class CommandParser:
     def _read_rover_details(l):
         LOG.debug("Looking at line '{}' for rover details.".format(l))
         res = list(l.rstrip().split())
+        if res[2] not in DIRECTIONS.keys():
+            raise ValueError("Rover direction {} not supported.".format(res[2]))
+        res[2] = DIRECTIONS[res[2]]
         return int(res[0]), int(res[1]), res[2]
 
     @staticmethod

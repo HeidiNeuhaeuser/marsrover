@@ -7,7 +7,7 @@ DIRECTIONS = get_directions()
 
 
 class Rover:
-    def __init__(self, x, y, h, p):
+    def __init__(self, x, y, h: Direction, p):
         self.x = x
         self.y = y
         self.heading = h
@@ -26,9 +26,6 @@ class Rover:
             self.y += self.heading.move[1]
         else:
             raise ValueError("Illegal move, rover cannot move out of plateau.")
-            #LOG.error("Illegal move, rover cannot move out of plateau.")
-            #LOG.error("Exit program")
-            #exit(1)
 
     def turn_left(self):
         self.heading = DIRECTIONS[self.heading.left]
