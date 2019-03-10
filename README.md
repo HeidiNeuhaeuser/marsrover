@@ -40,27 +40,37 @@ MMRMMRMRRM
 5 1 E
 
 ## Project Structure 
-Lorem
+```
+marsrover
+├── marsrover
+│   ├── control
+│   │   ├── cmd_invoker.py
+│   │   ├── cmd_parser.py
+│   │   └── command.py
+│   └── model
+│       ├── direction.py
+│       ├── plateau.py
+│       └── rover.py
+└── setup.py
+ ```
  
 ## Design
 
 The input is first parsed completely and 'translated' to corresponding plateau, mars rover and command objects. Per default, the input (and output) is read (written) to txt files that can be determined as command line parameters.
 After successful parsing, the commands are executed sequentially and output written to the output file.
 
-The Python 'logging' module was used to give more information on the program execution and possible errors. With it's different logging levels (ERROR, INFO, DEBUG) it facilitates code maintaining and debugging for developers.
+The Python 'logging' module was used to give more information on the program execution and possible errors. With it's different logging levels (ERROR, INFO, DEBUG) it facilitates code maintenance and debugging for developers.
 
-#### Assumptions
-* Rover cannot move out of grid
-* There can be more than one rover on a given grid coordinate
-* 0-coordinates are still part of the plateau ((0,0) is a valid coordinate)
+The rover directions (North, West...) were abstracted into a class to allow easy extension (e.g. North-West)
 
-
-#### Design Choices
 The Command Pattern was used to encapsulate different mars rover movement commands. This way, it is easier to extend the program, for example by supporting more complex rover movements.
 
-* Separation Model and Control
-* Classes for modularisation
-* direction abstraction to allow more complex extensions (e.g. North-West)
+
+#### Design Assumptions
+* Rover cannot move out of plateau coordinates
+* There can be more than one rover on a given plateau coordinate
+* 0-coordinates are still part of the plateau ((0,0) is a valid coordinate)
+
 
 #### Used Style
 [PEP 8 Style](https://www.python.org/dev/peps/pep-0008/)
@@ -72,16 +82,15 @@ The Command Pattern was used to encapsulate different mars rover movement comman
 ## Install
 Clone or download project (and unzip if necessary).
 
-Navigate into project: ```cd marsrover```
+Navigate into project folder: ```cd marsrover```
 
 Install program: ```python3 setup.py install```
 
 ## Run 
 Run Program: ```marsrover -i sample_input.txt``` 
-(reads from input file and writes into default output file)
 
 #### Optional Arguments
-Specify output file: ```marsrover -i sample_input.txt -o sample_output.txt``` 
+Specify output file: ```marsrover -i sample_input.txt -o path/to/output.txt``` 
 
 Run in verbose mode: ```marsrover -i sample_input.txt -v```
 
