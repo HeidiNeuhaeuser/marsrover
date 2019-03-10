@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/HeidiNeuhaeuser/marsrover.png?branch=master)](https://travis-ci.com/HeidiNeuhaeuser/marsrover)
+
 # Mars Rover Problem
 ThoughtWorks MarsRover Problem
 
@@ -57,13 +59,12 @@ marsrover
 ## Design
 
 The input is first parsed completely and 'translated' to corresponding plateau, mars rover and command objects. Per default, the input (and output) is read (written) to txt files that can be determined as command line parameters.
-After successful parsing, the commands are executed sequentially and output written to the output file.
+After successful parsing, the rover instructions are executed sequentially and output written to the output file.
 
-The Python 'logging' module was used to give more information on the program execution and possible errors. With it's different logging levels (ERROR, INFO, DEBUG) it facilitates code maintenance and debugging for developers.
+The Python 'logging' module was used to give more information on the program execution and possible errors. With it's different logging levels it facilitates code maintenance and debugging.
 
-The rover directions (North, West...) were abstracted into a class to allow easy extension (e.g. North-West)
-
-The Command Pattern was used to encapsulate different mars rover movement commands. This way, it is easier to extend the program, for example by supporting more complex rover movements.
+The Command Pattern was used to encapsulate different mars rover movement instructions. This way, it is easier to extend the program, for example by supporting more complex rover movements.
+Fruthermore, the rover directions (North, West...) were abstracted into a class to allow easy extension (e.g. North-West).
 
 
 #### Design Assumptions
